@@ -22,39 +22,27 @@ namespace newOLog
             SearchParameter = search;
         }
 
-        private int getCurrentPosition(int floor, int roof)
-        {
-            return (floor + roof) / 2;
-        }
-
         public bool SearchArray()
         {
+            int currentPosition;
+
             var roof = ArrayToSearch.Length;
 
             var floor = 0;
 
-            var currentPosition = 0;
-
-            var found = false;
-
-            var end = false;
-
             do
             {
-                currentPosition = getCurrentPosition(floor, roof);
+                currentPosition = (floor + roof) / 2;
 
-                if ((currentPosition == floor || currentPosition == roof) && ArrayToSearch[currentPosition].CompareTo(SearchParameter) != 0)
-                {
-                    //we could not find a match
-                    end = true;
-                    break;
-                }
                 if (ArrayToSearch[currentPosition].CompareTo(SearchParameter) == 0)
                 {
-                    found = true;
-                    end = true;
+                    return true;
                 }
-                else if (SearchParameter.CompareTo(ArrayToSearch[currentPosition]) > 0)
+                if ((currentPosition == floor || currentPosition == roof))
+                {
+                    return false;
+                }
+                else if (ArrayToSearch[currentPosition].CompareTo(SearchParameter) < 0)
                 {
                     floor = currentPosition;
                 }
@@ -62,8 +50,7 @@ namespace newOLog
                 {
                     roof = currentPosition;
                 }
-            } while (!end);
-            return found;
+            } while (true);
         }
     }
 }

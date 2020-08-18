@@ -52,8 +52,8 @@ namespace UnitTestProject1
         [TestMethod]
         public void FloorTest()
         {
-            int[] arr = new int[1000];
-            for (var i = 0; i <= 999; ++i)
+            int[] arr = new int[10];
+            for (var i = 0; i <= 9; ++i)
             {
                 arr[i] = i;
             }
@@ -73,6 +73,19 @@ namespace UnitTestProject1
             var LN = new newOLog.OLogN<int>(arr, arr[arr.Length - 1]);
             var result = LN.SearchArray();
             Assert.AreEqual(true, result);
+        }
+
+        [TestMethod]
+        public void NotEqual()
+        {
+            int[] arr = new int[1000];
+            for (var i = 0; i <= 999; ++i)
+            {
+                arr[i] = i;
+            }
+            var LN = new newOLog.OLogN<int>(arr, 1001);
+            var result = LN.SearchArray();
+            Assert.AreEqual(false, result);
         }
     }
 }
