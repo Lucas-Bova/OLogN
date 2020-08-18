@@ -18,7 +18,7 @@ namespace UnitTestProject1
             }
             var LN = new newOLog.OLogN<int>(arr, 9);
             Stopwatch stopwatch = Stopwatch.StartNew(); 
-            var result = LN.Search();
+            var result = LN.SearchArray();
             stopwatch.Stop();
             System.IO.File.AppendAllText(@"..\..\..\..\speed.txt", "\nRun - " + DateTime.Now.ToString() + ": " + stopwatch.ElapsedMilliseconds.ToString());
             Assert.AreEqual(true, result);
@@ -34,7 +34,7 @@ namespace UnitTestProject1
             }
             arr[6] = "y";
             var LN = new newOLog.OLogN<string>(arr, "y");
-            var result = LN.Search();
+            var result = LN.SearchArray();
             Assert.AreEqual(true, result);
 
         }
@@ -44,7 +44,7 @@ namespace UnitTestProject1
         {
             string[] arr = {"Car", "Cab", "Back", "Right", "Apple", "Zoo", "Truck", "Might", "Produce" };
             var LN = new newOLog.OLogN<string>(arr, "Truck");
-            var result = LN.Search();
+            var result = LN.SearchArray();
             Assert.AreEqual(true, result);
 
         }
@@ -58,7 +58,7 @@ namespace UnitTestProject1
                 arr[i] = i;
             }
             var LN = new newOLog.OLogN<int>(arr, 0);
-            var result = LN.Search();
+            var result = LN.SearchArray();
             Assert.AreEqual(true, result);
         }
 
@@ -71,7 +71,7 @@ namespace UnitTestProject1
                 arr[i] = i;
             }
             var LN = new newOLog.OLogN<int>(arr, arr[arr.Length - 1]);
-            var result = LN.Search();
+            var result = LN.SearchArray();
             Assert.AreEqual(true, result);
         }
     }
