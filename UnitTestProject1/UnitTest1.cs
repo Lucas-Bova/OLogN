@@ -11,12 +11,12 @@ namespace UnitTestProject1
         public void TestLarge()
         {
             System.Console.WriteLine("Starting test");
-            int[] arr = new int[100000];
-            for (var i = 0; i <= 99987; ++i)
+            int[] arr = new int[1000000];
+            for (var i = 0; i <= 999870; ++i)
             {
                 arr[i] = i;
             }
-            var LN = new newOLog.OLogN<int>(arr, 9);
+            var LN = new newOLog.OLogN<int>(arr, 957);
             Stopwatch stopwatch = Stopwatch.StartNew(); 
             var result = LN.SearchArray();
             stopwatch.Stop();

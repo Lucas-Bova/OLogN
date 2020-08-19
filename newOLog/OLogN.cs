@@ -15,6 +15,13 @@ namespace newOLog
 
         private T SearchParameter { get; set; }
 
+        enum Comparison
+        {
+            LessThan = -1,
+            Equal = 0,
+            GreaterThan = 1
+        }
+
         public OLogN(T[] arr, T search)
         {
             Array.Sort(arr);
@@ -24,31 +31,27 @@ namespace newOLog
 
         public bool SearchArray()
         {
-            int currentPosition;
-
-            var roof = ArrayToSearch.Length;
-
-            var floor = 0;
-
+            var upperBoundary = ArrayToSearch.Length;
+            var lowerBoundary = 0;
             do
             {
-                currentPosition = (floor + roof) / 2;
-
-                if (ArrayToSearch[currentPosition].CompareTo(SearchParameter) == 0)
+                var currentPosition = (lowerBoundary + upperBoundary) / 2;
+                var comparisonValue = (Comparison) ArrayToSearch[currentPosition].CompareTo(SearchParameter);
+                if (comparisonValue == Comparison.Equal)
                 {
                     return true;
                 }
-                if ((currentPosition == floor || currentPosition == roof))
+                if (currentPosition == lowerBoundary || currentPosition == upperBoundary)
                 {
                     return false;
                 }
-                else if (ArrayToSearch[currentPosition].CompareTo(SearchParameter) < 0)
+                if (comparisonValue == Comparison.LessThan)
                 {
-                    floor = currentPosition;
+                    lowerBoundary = currentPosition;
                 }
                 else
                 {
-                    roof = currentPosition;
+                    upperBoundary = currentPosition;
                 }
             } while (true);
         }
